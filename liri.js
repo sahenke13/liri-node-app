@@ -8,12 +8,12 @@ var moment = require("moment")
 
 // console.log(keys.spotify)
 
-var artist = "";
-var movieName = "";
+
+
 var choice = process.argv[2];
 
 if(choice == "concert-this"){
-
+    var artist = "";
     for(let i = 3; process.argv[i];i++){
        
         if(i < process.argv.length-1){
@@ -23,6 +23,91 @@ if(choice == "concert-this"){
             artist += process.argv[i];
         }
     }
+    myConcert(artist);
+}
+
+else if(choice == "spotify-this-song"){
+    var userQueryTrack = "";
+    
+    for(let i = 3; process.argv[i];i++){
+        if(i < process.argv.length-1){
+        userQueryTrack += process.argv[i] +"%20"; 
+        }
+        else{
+        userQueryTrack += process.argv[i];
+        }
+    }
+    mySpotify(userQueryTrack);
+}
+
+else if(choice == "movie-this"){
+    var movieName = "";
+    if (!process.argv[3]){
+        movieName = "Mr. Nobody";
+    }else{
+    for(let i = 3; process.argv[i];i++){
+        movieName+= process.argv[i] + " ";
+       
+    }
+}
+myOmdb(movieName);
+}
+else if(choice == "do-what-it-says"){
+
+    var fs = require("fs");
+    fs.readFile("random.txt","utf8",function(error, data){
+        if(error){
+            return console.log("error");
+
+        }
+        dataArr = data.split(",")
+        dataArrCmd = dataArr[0];
+        dataArrItem= dataArr[1];
+        console.log(dataArr);
+        console.log(dataArrCmd)
+        console.log(dataArrItem);
+        if(dataArrCmd == "spotify-this-song"){
+            mySpotify(dataArrItem);
+        }
+        else if (dataArrCmd == "movie-this"){
+            myOmdb(dataArrItem);
+            console.log("movie-this command used");
+        }
+        else if (dataArrCmd == "concert-this"){
+            myConcert(dataArrItem);
+
+            console.log("concert-this command used")
+        }
+        
+
+    });
+
+    console.log("do-what-it-says")
+}else{    
+        console.log("Please use commands concert-this, spotify-this-song, movie-this or do-what-it-says")
+}  
+
+
+//functions below
+//my spotify function
+function mySpotify(userQueryTrack){
+    var Spotify = require("node-spotify-api")
+    var spotify = new Spotify(keys.spotify);
+   
+    spotify.search({type: "track", query: userQueryTrack, limit: 1},function(err, data){
+        if(err){
+            console.log("an error occured: " + err);
+        }
+        let artist = data.tracks.items[0].artists[0].name
+        console.log("The artist is: "+ artist);
+        console.log("The song title is: " +data.tracks.items[0].name)
+        console.log(data.tracks.items[0].href)
+        console.log(data.tracks.items[0].album.name)
+    })
+}
+
+// My Concert function
+function myConcert(artist){
     let queryUrlBIT = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"
   
     request(queryUrlBIT, function(error, response, body){
@@ -46,43 +131,10 @@ if(choice == "concert-this"){
     }
     })
 }
-else if(choice == "spotify-this-song"){
-
-        var Spotify = require("node-spotify-api")
-        var spotify = new Spotify(keys.spotify);
-        var userQueryTrack = "";
-
-        for(let i = 3; process.argv[i];i++){
-       
-            if(i < process.argv.length-1){
-            userQueryTrack += process.argv[i] +"%20"; 
-            }
-            else{
-                userQueryTrack += process.argv[i];
-            }
-        }
-       
-        spotify.search({type: "track", query: userQueryTrack, limit: 1},function(err, data){
-            if(err){
-                console.log("an error occured: " + err);
-            }
-            let artist = data.tracks.items[0].artists[0].name
-            console.log("The artist is: "+ artist);
-            console.log("The song title is: " +data.tracks.items[0].name)
-            console.log(data.tracks.items[0].href)
-            console.log(data.tracks.items[0].album.name)
-        })
-    
-}
 
 
-else if(choice == "movie-this"){
-
-    for(let i = 3; process.argv[i];i++){
-        movieName+= process.argv[i] + " ";
-       
-    }
-
+// my Omdb function 
+function myOmdb (movieName){
     let queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
     // var request = require("request");
 
@@ -111,8 +163,3 @@ else if(choice == "movie-this"){
         }
     })    
 }
-else if(choice == "do-what-it-says"){
-    console.log("do-what-it-says")
-}else{    
-        console.log("Please use commands concert-this, spotify-this-song, movie-this or do-what-it-says")
-}  
