@@ -9,8 +9,12 @@ var moment = require("moment")
 // console.log(keys.spotify)
 
 
-
+var userCom = "";
 var choice = process.argv[2];
+for(let i = 2; process.argv[i]; i++){
+    userCom += process.argv[i]+ "  ";
+}
+myAppendFile(userCom);
 
 if(choice == "concert-this"){
     var artist = "";
@@ -23,9 +27,10 @@ if(choice == "concert-this"){
             artist += process.argv[i];
         }
     }
+  
     myConcert(artist);
+    
 }
-
 else if(choice == "spotify-this-song"){
     var userQueryTrack = "";
     
@@ -37,28 +42,28 @@ else if(choice == "spotify-this-song"){
         userQueryTrack += process.argv[i];
         }
     }
+    
     mySpotify(userQueryTrack);
+   
 }
-
 else if(choice == "movie-this"){
     var movieName = "";
     if (!process.argv[3]){
         movieName = "Mr. Nobody";
     }else{
     for(let i = 3; process.argv[i];i++){
-        movieName+= process.argv[i] + " ";
-       
+        movieName+= process.argv[i] + " ";      
     }
 }
-myOmdb(movieName);
+    
+    myOmdb(movieName);
 }
 else if(choice == "do-what-it-says"){
-
+   
     var fs = require("fs");
     fs.readFile("random.txt","utf8",function(error, data){
         if(error){
             return console.log("error");
-
         }
         dataArr = data.split(",")
         dataArrCmd = dataArr[0];
@@ -78,10 +83,7 @@ else if(choice == "do-what-it-says"){
 
             console.log("concert-this command used")
         }
-        
-
     });
-
     console.log("do-what-it-says")
 }else{    
         console.log("Please use commands concert-this, spotify-this-song, movie-this or do-what-it-says")
@@ -132,7 +134,6 @@ function myConcert(artist){
     })
 }
 
-
 // my Omdb function 
 function myOmdb (movieName){
     let queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
@@ -155,7 +156,6 @@ function myOmdb (movieName){
             console.log("Movie Langauge: " + data.Langauge);
             console.log("The movie Plot is: " + data.Plot);
             console.log("Actors include: " + data.Actors);
-        
         }
         else
         {
@@ -163,3 +163,20 @@ function myOmdb (movieName){
         }
     })    
 }
+
+//append File Function
+function myAppendFile(text){
+    fs = require("fs");
+    console.log(text);
+  
+    fs.appendFile("log.txt", "\n" + text, function(error){
+
+        if(error){
+            return console.log("error")
+        }
+        console.log(text);
+
+        console.log("your log has been updated")
+    })
+}
+
