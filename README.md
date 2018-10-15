@@ -1,4 +1,6 @@
 ## My Liri Node App
+    - author of this app is __Steven Henke__
+
     -A fun little node App to get relative information about your favorite
      bands, songs and movies.
     -you will get information on the item of your interest depending on the command you use whether, ##"movie-this","concert-this",         
