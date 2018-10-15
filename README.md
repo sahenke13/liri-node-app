@@ -8,3 +8,7 @@
    
     -to use the Liri App simple type node liri.js into the command line, note    you must be in the directory in which this program is located.
      i.e. node liri.js concert-this ed sheeran
+
+
+![](pictures/concert-this-output.png)
+
