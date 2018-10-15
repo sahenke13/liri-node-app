@@ -167,16 +167,14 @@ function myOmdb (movieName){
 //append File Function
 function myAppendFile(text){
     fs = require("fs");
-    console.log(text);
+   
   
     fs.appendFile("log.txt", "\n" + text, function(error){
 
         if(error){
             return console.log("error")
         }
-        console.log(text);
-
-        console.log("your log has been updated")
+        
     })
 }
 
