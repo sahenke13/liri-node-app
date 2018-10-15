@@ -16,12 +16,15 @@
 Here is an example of using the concert-this command
 ![](/pictures/movie-this.PNG)
 ![](/pictures/concert-this-output.PNG)
+
 Here is an example of using the spotigy-this-song commmand
 ![](/pictures/spotify.png)
 ![](/pictures/spotify-output.PNG)
+
 Here is an example of using the movie-this command
 ![](/pictures/concert-this.PNG)
 ![](/pictures/concert-this-output.PNG)
+
 Here is a picture of the updated Log.txt file
 ![](/pictures/logtxt.PNG)
 
