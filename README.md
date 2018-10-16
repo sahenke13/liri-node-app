@@ -15,17 +15,21 @@
    
     -See below for photo examples.
 
-Here is an example of using the concert-this command
+Here is an example of using the concert-this command.
 ![](./pictures/movie-this.PNG)
 ![](./pictures/concert-this-output.PNG)
 
-Here is an example of using the spotigy-this-song commmand
+Here is an example of using the spotigy-this-song commmand.
 ![](./pictures/spotify.png)
 ![](./pictures/spotify-output.PNG)
 
-Here is an example of using the movie-this command
+Here is an example of using the movie-this command.
 ![](./pictures/concert-this.PNG)
 ![](./pictures/concert-this-output.PNG)
+
+Here is an example of the random.txt and using the do-what-it-says command.
+![](./pictures/randomtxt.PNG)
+![](./pictures/do-what-it-says.PNG)
 
 Here is a picture of the updated Log.txt file
 ![](./pictures/logtxt.PNG)
