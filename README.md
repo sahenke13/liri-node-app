@@ -13,7 +13,7 @@
    
     -All of the commands that are run using the Liri Node App are recorded in the log.txt file.
    
-    -See below for photo examples.
+    -See below for photo examples and a video example.
 
 Here is an example of using the concert-this command.
 ![](./pictures/movie-this.PNG)
