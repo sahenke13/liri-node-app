@@ -29,7 +29,7 @@ Here is an example of using the movie-this command.
 
 Here is an example of the random.txt and using the do-what-it-says command.
 ![](./pictures/randomtxt.PNG)
-![](./pictures/do-what-it-says.PNG)
+![](./pictures/do-what-its-says.PNG)
 
 Here is a picture of the updated Log.txt file
 ![](./pictures/logtxt.PNG)
